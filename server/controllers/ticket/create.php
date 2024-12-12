@@ -46,6 +46,7 @@ class CreateController extends Controller {
     private $title;
     private $content;
     private $departmentId;
+    private $projectId;
     private $language;
     private $ticketNumber;
     private $email;
@@ -102,6 +103,7 @@ class CreateController extends Controller {
         $this->title = Controller::request('title', true);
         $this->content = Controller::request('content', true);
         $this->departmentId = Controller::request('departmentId');
+        $this->projectId = Controller::request('projectId');
         $this->language = Controller::request('language');
         $this->email = Controller::request('email');
         $this->name = Controller::request('name');
@@ -173,6 +175,7 @@ class CreateController extends Controller {
     }
 
     private function storeTicket() {
+        $project = Department::getDataStore($this->projectId);
         $department = Department::getDataStore($this->getCorrectDepartmentId());
         $author = $this->getAuthor();
         $this->language = $this->getCorrectLanguage();
@@ -190,6 +193,7 @@ class CreateController extends Controller {
             'content' => $this->replaceWithImagePaths($imagePaths, $this->content),
             'language' => $this->language,
             'department' => $department,
+            'project' => $project,
             'file' => ($fileUploader instanceof FileUploader) ? $fileUploader->getFileName() : null,
             'date' => Date::getCurrentDate(),
             'unread' => false,
