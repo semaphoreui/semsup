@@ -36,6 +36,7 @@ class Ticket extends DataStore {
             'content',
             'language',
             'department',
+            'project',
             'file',
             'date',
             'unread',
@@ -132,6 +133,10 @@ class Ticket extends DataStore {
                 'id' => $this->department->id,
                 'name' => $this->department->name
             ],
+            'project' => $this->project ? [
+                'id' => $this->project->id,
+                'name' => $this->project->name
+            ] : null,
             'date' => $this->date,
             'file' => $this->file,
             'language' => $this->language,
