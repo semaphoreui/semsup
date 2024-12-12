@@ -463,6 +463,7 @@ CREATE TABLE `ticket` (
   `author_email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `author_name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `department_id` int(11) unsigned DEFAULT NULL,
+  `project_id` int(11) unsigned DEFAULT NULL,
   `author` tinyint(1) unsigned DEFAULT NULL,
   `author_id` int(11) unsigned DEFAULT NULL,
   `author_staff` tinyint(1) unsigned DEFAULT NULL,
@@ -484,6 +485,7 @@ CREATE TABLE `ticket` (
   CONSTRAINT `c_fk_ticket_author_id` FOREIGN KEY (`author_id`) REFERENCES `user` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `c_fk_ticket_author_staff_id` FOREIGN KEY (`author_staff_id`) REFERENCES `staff` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `c_fk_ticket_department_id` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
+  CONSTRAINT `c_fk_ticket_project_id` FOREIGN KEY (`project_id`) REFERENCES `project` (`id`) ON DELETE SET NULL ON UPDATE SET NULL,
   CONSTRAINT `c_fk_ticket_owner_id` FOREIGN KEY (`owner_id`) REFERENCES `staff` (`id`) ON DELETE SET NULL ON UPDATE SET NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
